@@ -41,19 +41,23 @@ fun BMICalculatorScreen() {
     BMICalculatorTheme {
         // Scaffold is used for setting up common elements like top bar
         Scaffold(
-            modifier = Modifier.padding(8.dp),
             topBar = {
-                // Add your top bar here if needed
-                Text(text = "BMI Calculator", fontSize = 24.sp, color = Color.Black, modifier = Modifier.padding(16.dp))
+                // Top bar with padding
+                Text(
+                    text = "BMI Calculator",
+                    fontSize = 24.sp,
+                    color = Color.Black,
+                    modifier = Modifier.padding(16.dp)
+                )
             }
-        ) {
-            BMICalculator() // This is where your actual BMI calculator UI will be
+        ) { paddingValues -> // This ensures the inner content has appropriate padding
+            BMICalculator(modifier = Modifier.padding(paddingValues)) // Apply padding to inner content
         }
     }
 }
 
 @Composable
-fun BMICalculator() {
+fun BMICalculator(modifier: Modifier) {
     // Initial values for weight and height
     var weight by remember { mutableStateOf(70f) }
     var height by remember { mutableStateOf(170f) }
